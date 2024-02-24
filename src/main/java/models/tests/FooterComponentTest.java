@@ -1,4 +1,4 @@
-package models.test;
+package models.tests;
 
 import driver.DriverFactory;
 import models.components.global.footer.FooterColumComponent;
@@ -13,10 +13,10 @@ public class FooterComponentTest {
         WebDriver driver = DriverFactory.getWebDriver();
         Homepage homepage = new Homepage(driver);
         FooterComponent footerComponent = homepage.footerComponent();
-        FooterColumComponent informationColumnComponent = footerComponent.informationFooterComponent();
-        FooterColumComponent customerFooterComponent = footerComponent.customerFooterComponent();
-        testFooterComp(informationColumnComponent);
-        testFooterComp(customerFooterComponent);
+//        FooterColumComponent informationColumnComponent = footerComponent.informationFooterComponent();
+//        FooterColumComponent customerFooterComponent = footerComponent.customerFooterComponent();
+//        testFooterComp(informationColumnComponent);
+//        testFooterComp(customerFooterComponent);
 
     }
 

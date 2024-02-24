@@ -1,7 +1,6 @@
-package models.test;
+package models.tests;
 
 import driver.DriverFactory;
-import models.components.product.ProductItemComponent;
 import models.pages.Homepage;
 import org.openqa.selenium.WebDriver;
 
