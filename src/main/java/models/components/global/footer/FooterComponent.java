@@ -16,8 +16,17 @@ public class FooterComponent extends Component {
         return findComponent(InformationColumnComponent.class);
     }
 
-    public CustomerFooterComponent customerFooterComponent(){
-        return findComponent(CustomerFooterComponent.class);
+    public CustomerServiceColumnComponent customerFooterComponent(){
+        return findComponent(CustomerServiceColumnComponent.class);
     }
+
+    public MyAccountFooterComponent myAccountFooterComponent(){
+        return findComponent(MyAccountFooterComponent.class);
+    }
+
+    public FollowUsFooterComponent followUsFooterComponent(){
+        return findComponent(FollowUsFooterComponent.class);
+    }
+
 }
 

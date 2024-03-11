@@ -1,9 +1,9 @@
-package models.test;
+package tests;
 
 import driver.DriverFactory;
 import models.pages.LoginPagePOM1;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static driver.PageURL.HomePageURL;
 import static driver.PageURL.loginURL;
 
-public class LoginPagePOM1Test {
+public class LoginPagePOM1Test{
 
     private WebDriver driver;
 
@@ -32,6 +32,12 @@ public class LoginPagePOM1Test {
         String expectedURL = HomePageURL;
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL,expectedURL);
+    }
+
+    public void vote(){
+        Actions action  = new Actions(driver);
+
+
     }
     public void closeBrowser(){
         driver.quit();
