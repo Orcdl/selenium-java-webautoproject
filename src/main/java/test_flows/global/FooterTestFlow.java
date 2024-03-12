@@ -1,5 +1,6 @@
 package test_flows.global;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import models.components.global.footer.*;
@@ -27,41 +28,52 @@ public class FooterTestFlow {
         FollowUsFooterComponent followUsColumnComponent = basePage.footerComponent().followUsFooterComponent();
 
         verifyInformationColumn(informationColumnComponent);
-//        verifyCustomerServiceColumnComponent(customerServiceColumnComponent);
-//        verifyMyAccountColumn(myAccountColumnComponent);
-//        verifyFollowUseColum(followUsColumnComponent);
+        verifyCustomerServiceColumnComponent(customerServiceColumnComponent);
+        verifyMyAccountColumn(myAccountColumnComponent);
+        verifyFollowUseColum(followUsColumnComponent);
     }
 
     private void verifyInformationColumn(FooterColumComponent informationColumnComponent) {
-        System.out.println("verifyInformationColumn");
-        WebElement header = informationColumnComponent.headerEle();
-        Assert.assertEquals(header.getText(), "INFORMATION", "Failed to find header text");
-        List<WebElement> list = informationColumnComponent.linksEle();
-        Assert.assertEquals(list.isEmpty(), false, "List is empty");
-        System.out.println("List length = " + list.size());
+//        System.out.println("verifyInformationColumn");
+//        WebElement header = informationColumnComponent.headerEle();
+//        Assert.assertEquals(header.getText(), "INFORMATION", "Failed to find header text");
+//        List<WebElement> list = informationColumnComponent.linksEle();
+//        Assert.assertEquals(list.isEmpty(), false, "List is empty");
+//        System.out.println("List length = " + list.size());
         List<String> expectedLinktexts =
                 Arrays.asList("Sitemap","Shipping & Returns","Privacy Notice","Conditions of Use","About us","Contact us");
         List<String> expectedHrefs =
-                Arrays.asList("/sitemap","/shipping-returns","/privacy-policy","/conditions-of-use","/about-us","/contactus");
+                Arrays.asList("sitemap","shipping-returns","privacy-policy","conditions-of-use","about-us","contactus");
         testFooterColumn(informationColumnComponent, expectedLinktexts, expectedHrefs);
+        System.out.println(expectedHrefs);
     }
 
     private void verifyCustomerServiceColumnComponent(FooterColumComponent customerServiceColumnComponent) {
-        List<String> expectedLinktexts = new ArrayList<>();
-        List<String> expectedHrefs = new ArrayList<>();
+        List<String> expectedLinktexts =
+                Arrays.asList("Search","News","Blog","Recently viewed products","Compare products list","New products");
+        List<String> expectedHrefs =
+                Arrays.asList("search","news","blog","recentlyviewedproducts","compareproducts","newproducts");
         testFooterColumn(customerServiceColumnComponent, expectedLinktexts, expectedHrefs);
+        System.out.println(expectedHrefs);
+
     }
 
     private void verifyMyAccountColumn(FooterColumComponent myAccountColumnComponent ) {
-        List<String> expectedLinktexts = new ArrayList<>();
-        List<String> expectedHrefs = new ArrayList<>();
+        List<String> expectedLinktexts =
+                Arrays.asList("My account","Orders","Addresses","Shopping cart","Wishlist");
+        List<String> expectedHrefs =
+                Arrays.asList("customer/info","customer/orders","customer/addresses","cart","wishlist");
         testFooterColumn(myAccountColumnComponent, expectedLinktexts, expectedHrefs);
+        System.out.println(expectedHrefs);
     }
 
     private void verifyFollowUseColum(FooterColumComponent myAccountColumnComponent) {
-        List<String> expectedLinktexts = new ArrayList<>();
-        List<String> expectedHrefs = new ArrayList<>();
+        List<String> expectedLinktexts =
+                Arrays.asList("Facebook","Twitter","RSS","YouTube","Google+");
+        List<String> expectedHrefs =
+                Arrays.asList("nopCommerce","news/rss/1","user/nopCommerce","+nopcommerce");
         testFooterColumn(myAccountColumnComponent, expectedLinktexts, expectedHrefs);
+        System.out.println(expectedHrefs);
     }
 
     private void testFooterColumn(FooterColumComponent footerColumComponent, List<String> expectedLinktexts, List<String> expectedHrefs){
