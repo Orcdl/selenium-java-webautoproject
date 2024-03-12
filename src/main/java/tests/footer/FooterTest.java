@@ -11,8 +11,9 @@ public class FooterTest extends BaseTest {
 
     @Test
     public  void testHomePageFooter(){
-        driver.get(HomePageURL);
+        driver.get("https://demowebshop.tricentis.com/");
         FooterTestFlow footerTestFlow = new FooterTestFlow(driver);
         footerTestFlow.verifyFooterComponent();
+
     }
 }

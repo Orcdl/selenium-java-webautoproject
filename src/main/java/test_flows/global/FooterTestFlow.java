@@ -7,7 +7,6 @@ import models.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
 
 import java.util.ArrayList;
 
@@ -34,10 +33,16 @@ public class FooterTestFlow {
     }
 
     private void verifyInformationColumn(FooterColumComponent informationColumnComponent) {
+        System.out.println("verifyInformationColumn");
+        WebElement header = informationColumnComponent.headerEle();
+        Assert.assertEquals(header.getText(), "INFORMATION", "Failed to find header text");
+        List<WebElement> list = informationColumnComponent.linksEle();
+        Assert.assertEquals(list.isEmpty(), false, "List is empty");
+        System.out.println("List length = " + list.size());
         List<String> expectedLinktexts =
                 Arrays.asList("Sitemap","Shipping & Returns","Privacy Notice","Conditions of Use","About us","Contact us");
         List<String> expectedHrefs =
-                Arrays.asList("sitemap","shipping-returns","privacy-policy","conditions-of-use","about-us","contactus");
+                Arrays.asList("/sitemap","/shipping-returns","/privacy-policy","/conditions-of-use","/about-us","/contactus");
         testFooterColumn(informationColumnComponent, expectedLinktexts, expectedHrefs);
     }
 
@@ -59,7 +64,7 @@ public class FooterTestFlow {
         testFooterColumn(myAccountColumnComponent, expectedLinktexts, expectedHrefs);
     }
 
-    private void testFooterColumn(FooterColumComponent footerColumComponent,List<String> expectedLinktexts,List<String> expectedHrefs){
+    private void testFooterColumn(FooterColumComponent footerColumComponent, List<String> expectedLinktexts, List<String> expectedHrefs){
         List<String> actualLinktexts = new ArrayList<>();
         List<String> actualHers = new ArrayList<>();
         expectedHrefs.replaceAll(originHref ->"https://demowebshop.tricentis.com/" + originHref);
@@ -68,10 +73,10 @@ public class FooterTestFlow {
             actualLinktexts.add(columnItem.getText());
             actualHers.add(columnItem.getAttribute("href"));
         });
-//        if (actualLinktexts.isEmpty() || actualHers.isEmpty()) {
-//            Assert.fail("Footer Column text or hyberlink is empty");
-//        }
-
+        if (actualLinktexts.isEmpty() || actualHers.isEmpty()) {
+            Assert.fail("Footer Column text or hyberlink is empty");
+        }
+//
 //        System.out.println(footerColumComponent.headerEle().getText());
 //        for(WebElement linksEle: footerColumComponent.linksEle()){
 //            System.out.println(linksEle.getText() + " : " + linksEle.getAttribute("href"));
