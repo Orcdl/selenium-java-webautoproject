@@ -1,4 +1,4 @@
-package models.components;
+package models.components.product;
 
 import org.openqa.selenium.WebDriver;
 

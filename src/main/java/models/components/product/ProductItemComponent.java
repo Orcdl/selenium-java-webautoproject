@@ -1,7 +1,5 @@
 package models.components.product;
 
-import models.components.Component;
-import models.components.ComponentCssSelector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

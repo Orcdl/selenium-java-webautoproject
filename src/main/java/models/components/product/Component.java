@@ -1,4 +1,4 @@
-package models.components;
+package models.components.product;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +22,16 @@ public class Component {
             this.driver = driver;
             this.component = component;
             this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(15));
+        }
+
+        public WebElement getComponent(){
+            return this.component;
+        }
+
+        public  WebDriverWait componenetWait(){
+            return this.wait;
+
+
         }
 
         public WebElement findElement(By by) {

@@ -1,13 +1,10 @@
 package models.components.global.footer;
 
-import models.components.Component;
-import models.components.ComponentCssSelector;
+import models.components.product.Component;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByChained;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.util.List;
 

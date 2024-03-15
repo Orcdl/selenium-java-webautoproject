@@ -1,7 +1,6 @@
 package models.components.global.footer;
 
-import models.components.Component;
-import models.components.ComponentCssSelector;
+import models.components.product.ComponentCssSelector;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 

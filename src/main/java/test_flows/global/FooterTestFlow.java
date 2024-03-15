@@ -1,12 +1,17 @@
 package test_flows.global;
 
-import java.sql.SQLOutput;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
+
+import models.components.global.TopMenuComponent;
 import models.components.global.footer.*;
 import models.pages.BasePage;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -31,6 +36,36 @@ public class FooterTestFlow {
         verifyCustomerServiceColumnComponent(customerServiceColumnComponent);
         verifyMyAccountColumn(myAccountColumnComponent);
         verifyFollowUseColum(followUsColumnComponent);
+    }
+
+    public void verifyProductCartComponent(){
+        BasePage basePage = new BasePage(driver);
+        TopMenuComponent topMenuComponent = basePage.topMenuComponent();
+
+        List<TopMenuComponent.MainCartItem> mainCartElem = topMenuComponent.mainCartItemElement();
+        Assert.assertFalse(mainCartElem.isEmpty(),"[ERR]: There is not item on top menu");
+        TopMenuComponent.MainCartItem randomMainItemElem = mainCartElem.get(new SecureRandom().nextInt(mainCartElem.size()));
+        String randomCartHref = randomMainItemElem.cartItemLinkElement().getAttribute("href");
+
+
+
+        List<TopMenuComponent.SublistComponent> sublistComps = randomMainItemElem.sublistComps();
+        if(sublistComps.isEmpty()){
+            randomMainItemElem.cartItemLinkElement().click();
+        } else {
+            int randomIndex = new SecureRandom().nextInt(sublistComps.size());
+            TopMenuComponent.SublistComponent randomCartItemComp = sublistComps.get(randomIndex);
+            randomCartHref = randomCartItemComp.getComponent().getAttribute("href");
+            randomMainItemElem.getComponent().click();
+        }
+        //Make sure we are on the right page | wait until navigation is done
+        try {
+            WebDriverWait wait = randomMainItemElem.componenetWait();
+            wait.until(ExpectedConditions.urlContains(randomCartHref));
+        } catch (TimeoutException ignored){
+            Assert.fail("[ERR] Target page is not matched");
+        }
+        this.verifyFooterComponent();
     }
 
     private void verifyInformationColumn(FooterColumComponent informationColumnComponent) {
