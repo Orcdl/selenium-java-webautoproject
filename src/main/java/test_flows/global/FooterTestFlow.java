@@ -4,7 +4,7 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 
-import models.components.global.TopMenuComponent;
+import models.components.global.CartegoryItemComponent;
 import models.components.global.footer.*;
 import models.pages.BasePage;
 import org.openqa.selenium.TimeoutException;
@@ -40,27 +40,28 @@ public class FooterTestFlow {
 
     public void verifyProductCartComponent(){
         BasePage basePage = new BasePage(driver);
-        TopMenuComponent topMenuComponent = basePage.topMenuComponent();
+        List<CartegoryItemComponent> cartegoryItemComponents = basePage.categoryItemComponent();
 
-        List<TopMenuComponent.MainCartItem> mainCartElem = topMenuComponent.mainCartItemElement();
-        Assert.assertFalse(mainCartElem.isEmpty(),"[ERR]: There is not item on top menu");
-        TopMenuComponent.MainCartItem randomMainItemElem = mainCartElem.get(new SecureRandom().nextInt(mainCartElem.size()));
-        String randomCartHref = randomMainItemElem.cartItemLinkElement().getAttribute("href");
+        Assert.assertFalse(cartegoryItemComponents.isEmpty(),"[ERR]: There is no category item on the top menu");
+        int randomCategoryComponentIndex  = new SecureRandom().nextInt(cartegoryItemComponents.size());
+        CartegoryItemComponent randomCategoryComponent = cartegoryItemComponents.get(randomCategoryComponentIndex);
+        String randomCartHref = randomCategoryComponent.cartItemLink().getAttribute("href");
 
 
 
-        List<TopMenuComponent.SublistComponent> sublistComps = randomMainItemElem.sublistComps();
-        if(sublistComps.isEmpty()){
-            randomMainItemElem.cartItemLinkElement().click();
+        List<WebElement> sublistItems = randomCategoryComponent.sublistItems();
+        if(sublistItems.isEmpty()){
+            randomCategoryComponent.cartItemLink().click();
         } else {
-            int randomIndex = new SecureRandom().nextInt(sublistComps.size());
-            TopMenuComponent.SublistComponent randomCartItemComp = sublistComps.get(randomIndex);
-            randomCartHref = randomCartItemComp.getComponent().getAttribute("href");
-            randomMainItemElem.getComponent().click();
+            int randomSubItemIndex = new SecureRandom().nextInt(sublistItems.size());
+            WebElement randomSubItem = sublistItems.get(randomSubItemIndex);
+            randomCartHref = randomSubItem.getAttribute("href");
+            randomSubItem.click();
+
         }
         //Make sure we are on the right page | wait until navigation is done
         try {
-            WebDriverWait wait = randomMainItemElem.componenetWait();
+            WebDriverWait wait = randomCategoryComponent.componenetWait();
             wait.until(ExpectedConditions.urlContains(randomCartHref));
         } catch (TimeoutException ignored){
             Assert.fail("[ERR] Target page is not matched");
@@ -69,12 +70,6 @@ public class FooterTestFlow {
     }
 
     private void verifyInformationColumn(FooterColumComponent informationColumnComponent) {
-//        System.out.println("verifyInformationColumn");
-//        WebElement header = informationColumnComponent.headerEle();
-//        Assert.assertEquals(header.getText(), "INFORMATION", "Failed to find header text");
-//        List<WebElement> list = informationColumnComponent.linksEle();
-//        Assert.assertEquals(list.isEmpty(), false, "List is empty");
-//        System.out.println("List length = " + list.size());
         List<String> expectedLinktexts =
                 Arrays.asList("Sitemap","Shipping & Returns","Privacy Notice","Conditions of Use","About us","Contact us");
         List<String> expectedHrefs =
@@ -123,12 +118,6 @@ public class FooterTestFlow {
         if (actualLinktexts.isEmpty() || actualHers.isEmpty()) {
             Assert.fail("Footer Column text or hyberlink is empty");
         }
-//
-//        System.out.println(footerColumComponent.headerEle().getText());
-//        for(WebElement linksEle: footerColumComponent.linksEle()){
-//            System.out.println(linksEle.getText() + " : " + linksEle.getAttribute("href"));
-//        }
-//        System.out.println("========");
 
         Assert.assertEquals(actualLinktexts,expectedLinktexts,"ERR: Footer column link text are different");
         Assert.assertEquals(actualHers,actualHers,"ERR: Footer column hrefs text are different");

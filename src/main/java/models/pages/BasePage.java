@@ -1,11 +1,13 @@
 package models.pages;
 
-import models.components.global.TopMenuComponent;
+import models.components.global.CartegoryItemComponent;
 import models.components.product.Component;
 import models.components.global.footer.FooterComponent;
 import models.components.global.header.HeaderComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.Arrays;
+import java.util.List;
 
 public class BasePage extends Component {
 
@@ -25,8 +27,8 @@ public class BasePage extends Component {
         return findComponent(HeaderComponent.class);
     }
 
-    public TopMenuComponent topMenuComponent(){
-        return findComponent(TopMenuComponent.class);
+    public List <CartegoryItemComponent> categoryItemComponent(){
+        return findComponents(CartegoryItemComponent.class);
     }
 
 
