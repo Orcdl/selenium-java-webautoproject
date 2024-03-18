@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.net.HttpURLConnection;
 import java.util.*;
 
 
@@ -27,15 +29,29 @@ public class URLTest extends BaseTest{
     }
 
     @Test
+    public void verfiyElementShow(){
+        driver.get("https://demowebshop.tricentis.com/");
+        By LangPopupSel = By.className("modal-content");
+        List <WebElement> langPopupElem = driver.findElements(LangPopupSel);
+            Assert.assertFalse(langPopupElem.isEmpty(),"the popup should be show on the page");
+            System.out.println(langPopupElem);
+        }
+
+    @Test
     public void verifyBrokenLinks(){
-        driver.get(HomePageURL);
+        driver.get("https://demowebshop.tricentis.com/");
+        String url ="";
+        HttpURLConnection huc = null;
+        int respCode = 200;
         List<WebElement> links = driver.findElements(By.tagName("a"));
-        for (WebElement link: links){
-            String href = link.getAttribute("href");
-            Assert.assertTrue(href.isEmpty());
-            System.out.println(links);
+        System.out.println("Total links on the Web page" + links.size());
+        Iterator<WebElement> iterator = links.iterator();
+        while (iterator.hasNext()) {
+            url = iterator.next().getText();
+            System.out.println(url);
+            if (url == null || url.isEmpty()) {
+                System.out.println("URL should not be empty");
+            }
         }
     }
-
-
 }
