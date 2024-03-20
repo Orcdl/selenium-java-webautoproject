@@ -1,4 +1,4 @@
-package models.pages;
+package models.components.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

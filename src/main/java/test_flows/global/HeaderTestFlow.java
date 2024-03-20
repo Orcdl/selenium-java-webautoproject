@@ -1,17 +1,11 @@
 package test_flows.global;
 
-import models.components.global.footer.*;
 import models.components.global.header.LoginPageComponent;
 import models.components.global.header.RegisterPageComponent;
 import models.components.global.header.ShoppingCartPageComponent;
 import models.components.global.header.WishListPageComponent;
-import models.pages.BasePage;
+import models.components.pages.BasePage;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class HeaderTestFlow<originHref> {
 

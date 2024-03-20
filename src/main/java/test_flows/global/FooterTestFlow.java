@@ -6,7 +6,7 @@ import java.util.List;
 
 import models.components.global.CartegoryItemComponent;
 import models.components.global.footer.*;
-import models.pages.BasePage;
+import models.components.pages.BasePage;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

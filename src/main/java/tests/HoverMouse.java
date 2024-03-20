@@ -1,11 +1,10 @@
 package tests;
 
 import driver.DriverFactory;
-import models.pages.LoginPagePOM1;
+import models.components.pages.LoginPagePOM1;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
-import static driver.PageURL.HomePageURL;
 import static driver.PageURL.loginURL;
 
 public class HoverMouse {

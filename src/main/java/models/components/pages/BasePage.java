@@ -1,4 +1,4 @@
-package models.pages;
+package models.components.pages;
 
 import models.components.global.CartegoryItemComponent;
 import models.components.product.Component;

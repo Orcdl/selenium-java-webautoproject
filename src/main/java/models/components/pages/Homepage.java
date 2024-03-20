@@ -1,4 +1,4 @@
-package models.pages;
+package models.components.pages;
 
 import models.components.product.ProductItemComponent;
 import org.openqa.selenium.WebDriver;

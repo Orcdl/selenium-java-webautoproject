@@ -1,4 +1,4 @@
-package tests.footer;
+package tests.Global.footer;
 
 import org.testng.annotations.Test;
 import test_flows.global.BaseTest;

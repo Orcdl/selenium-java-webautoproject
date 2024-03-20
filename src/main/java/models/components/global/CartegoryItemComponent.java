@@ -26,32 +26,4 @@ public class CartegoryItemComponent extends Component {
         actions.moveToElement(component).perform();
         return findElements(By.cssSelector(".sublist li a"));
     }
-
-//    public List<SublistComponent> sublistComps(){
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(component).perform();
-//        return findComponents(SublistComponent.class);
-//
-//    }
-//
-//
-//    @ComponentCssSelector(".top-menu > li")
-//    public static class MainCartItem extends Component{
-//
-//        public MainCartItem(WebDriver driver, WebElement component) {
-//            super(driver, component);
-//        }
-//
-//
-//
-//    }
-//
-//    @ComponentCssSelector(".sublist li a")
-//    public static class SublistComponent extends Component{
-//
-//        public SublistComponent(WebDriver driver, WebElement component) {
-//            super(driver, component);
-//
-//        }
-//    }
 }

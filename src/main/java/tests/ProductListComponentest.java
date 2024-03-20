@@ -1,7 +1,7 @@
 package tests;
 
 import driver.DriverFactory;
-import models.pages.Homepage;
+import models.components.pages.Homepage;
 import org.openqa.selenium.WebDriver;
 
 import static driver.PageURL.HomePageURL;

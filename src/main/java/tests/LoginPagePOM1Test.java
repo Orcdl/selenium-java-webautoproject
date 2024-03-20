@@ -1,7 +1,7 @@
 package tests;
 
 import driver.DriverFactory;
-import models.pages.LoginPagePOM1;
+import models.components.pages.LoginPagePOM1;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
