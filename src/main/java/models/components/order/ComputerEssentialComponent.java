@@ -1,11 +1,13 @@
 package models.components.order;
 
-import models.components.product.ComponentCssSelector;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-@ComponentCssSelector(".product-essential")
+
 public abstract class ComputerEssentialComponent extends BaseItemComponent {
+
+    private final static By allOptionSel = By.cssSelector(".option-list input");
 
     public ComputerEssentialComponent(WebDriver driver, WebElement component) {
         super(driver, component);
@@ -13,4 +15,42 @@ public abstract class ComputerEssentialComponent extends BaseItemComponent {
 
     public abstract  String selectProcessorType(String type);
     public abstract  String selectRAMType(String type);
+
+    public String selectHDD(String type){
+        return selectCompOption(type);
+    }
+
+    public String selectOs(String type){
+        return selectCompOption(type);
+    }
+
+    public String selectSoftware(String type){
+        return selectCompOption(type);
+    }
+
+    public void unselectDefaultOptions(){
+        component.findElements(allOptionSel).forEach(option -> {
+            if(option.getAttribute("checked") != null){
+                option.click();
+            }
+        });
+
+    }
+
+    protected String selectCompOption(String type){
+        String selectorStr = "//label[contains(text()," + type +")]";
+        By optionSelector = By.xpath(selectorStr);
+        WebElement optionEle = null;
+        try{
+            optionEle = component.findElement(optionSelector);
+        } catch (Exception ignored){}
+
+        if(optionEle == null){
+            throw new RuntimeException("[ERR] The option" + type + "is not existing on the page");
+        }
+        return optionEle.getText().trim();
+
+        //If we don't find that element we throw an exception to tell that the option value is not existing on the page
+    }
+
 }
